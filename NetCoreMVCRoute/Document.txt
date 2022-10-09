@@ -1,0 +1,32 @@
+﻿
+
+Route (Yönlendirme) Nedir ?
+
+Gelen istekleri(Request) Url'leriyle eşleştirerek sayfa isteği işlemeyi sağlayan,
+rotayı belirlemek için kullanılan bir şablondur.
+
+Net Core'da varsayılan yönlendirme endpoint routing olarak isimlendirilir.
+Startup.cs classında varsayılan olarak aşağıdaki gibi tanımlanır.
+
+ app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+            });
+
+Not: Yönlendirme, UseRouting ve UseEndpoints middleware(ara yazılımı) kullanılarak yapılandırılır/yapılandırılabilir.
+
+-- UseRouting ve UseEndpoint Middleware Yapısı
+
+Kullanıcı istekte bulunuduğunda hangi controller için çalışacağını, hangi action'ı ilgili model ile çalıştırıp response döneceğini Startup.cs classı içerisindeki UseRouting middleware yapısı gerçekleştirir. UseEndpoint Middleware sayesinde ise gelen istediğin hangi controller ve actiona yönlendirilmesi gerektiğini belirleyebiliriz.
+{controller=Home}/{action=Index}/{id?} patterni kullanıdığımızda defaultta bir rota belirlemiş oluruz.
+
+
+Uygulama Adımları:
+
+1-) UserAccount controller içerisindeki index action ve parameters action içerisinde route atrribute kullanımına değinildi. Yönlendirmeyi default kullanmak yerine route attribute ile Account/User olarak belirledik.
+
+2-) HomeController içerisinde NotFoundAction ve Test action oluşturuldu. NotFoundAction ile NotFound route kullanımına değinildi(startup da tanımlı).
+
+3-) Dynamic Controller içerisindeki detail actionda Dinamik route kullanımına değinildi. (startup da tanımlı.)
